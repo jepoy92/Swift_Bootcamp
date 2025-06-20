@@ -70,5 +70,52 @@ print(
 )
 // more advanced notation
 print(
-    ages.sorted(by: >)
+    ages.sorted(by: >),
+    ages.sorted(by: <)
+)
+
+func customAdd2(
+    _ lhs: Int,
+    _ rhs: Int,
+    using function : (Int, Int) -> Int
+) -> Int {
+    function(lhs, rhs)
+}
+
+print(customAdd2(
+        40,
+        30
+        ) 
+    { (lhs, rhs) in
+        lhs + rhs
+    }
+)
+
+func add10To(_ value: Int) -> Int {
+    value + 10
+}
+
+func add20To(_ value: Int) -> Int {
+    value + 20
+}
+
+func doAddition(
+    on value: Int,
+    using function: (Int) -> Int
+) -> Int {
+    function(value)
+}
+
+print(
+    doAddition(
+        on: 20,
+        using: add10To(_:)
+        )
+)
+
+print(
+    doAddition(
+        on: 20,
+        using: add20To(_:)
+        )
 )
