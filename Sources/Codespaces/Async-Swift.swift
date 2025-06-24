@@ -70,7 +70,7 @@ func buyWholeEnsemble() async throws -> Ensemble {
 Task {
     if let ensemble = try? await 
         buyWholeEnsemble() {
-            ensemble
+            print(ensemble)
     } else {
         print("Failed to buy the ensemble")
     }
@@ -80,7 +80,7 @@ func getFullName(
     delay: Duration,
     calculator: () async -> String
 ) async -> String {
-    try? await Task.sleep(nanoseconds: delay.nanoseconds)
+    try? await Task.sleep(nanoseconds: 1_000_000_000)
     return await calculator()
 }
 
@@ -88,10 +88,10 @@ func fullName() async -> String { "Foo Bar" }
 
 Task {
     await getFullName(
-        delay: .seconds(1),
+        delay: .seconds(1)
     ) {
-        await let name = fullName()
-        return await name
+        await fullName()
     }
 }
+
 RunLoop.main.run() // Keeps the script alive
